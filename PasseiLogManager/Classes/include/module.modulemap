@@ -1,3 +1,0 @@
-module LogManager {
-    header "Header.h"
-}
