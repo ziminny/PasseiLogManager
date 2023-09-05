@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'PasseiLogManager'
-  s.version               = '0.0.1'
+  s.version               = '0.0.2'
   s.summary               = 'Log generator'
   s.swift_version         = '5.0'
   s.description           = <<-DESC "Describe the use of pod file"
