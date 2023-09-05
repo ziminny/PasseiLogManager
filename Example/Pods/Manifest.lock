@@ -1,0 +1,16 @@
+PODS:
+  - PasseiLogManager (0.1.0)
+
+DEPENDENCIES:
+  - PasseiLogManager (from `../`)
+
+EXTERNAL SOURCES:
+  PasseiLogManager:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PasseiLogManager: 004ef04cc3603b2165f9ff47238d724470b2c9ab
+
+PODFILE CHECKSUM: a770556f8f70591e2597327458f02beef85e1709
+
+COCOAPODS: 1.12.1

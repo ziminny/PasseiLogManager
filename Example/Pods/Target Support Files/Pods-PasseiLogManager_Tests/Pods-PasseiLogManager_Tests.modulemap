@@ -1,0 +1,6 @@
+framework module Pods_PasseiLogManager_Tests {
+  umbrella header "Pods-PasseiLogManager_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

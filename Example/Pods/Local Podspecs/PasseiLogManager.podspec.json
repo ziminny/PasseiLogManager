@@ -1,0 +1,22 @@
+{
+  "name": "PasseiLogManager",
+  "version": "0.1.0",
+  "summary": "A short description of PasseiLogManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/95707007/PasseiLogManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "95707007": "ziminny@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/95707007/PasseiLogManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "PasseiLogManager/Classes/**/*"
+}
