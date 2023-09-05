@@ -14,9 +14,6 @@ public class LogManager {
 
     public static func dispachLog(_ message:String) {
         
-        let productName = LogManager.getProductName;
-        
-        
         #if DEBUG
         
         var fileHandle = FileHandle(forReadingAtPath: Constants.PATH_LOG_DEBUG)
@@ -41,9 +38,7 @@ public class LogManager {
         try? fileHandle?.close()
             
         #else
-            let identifier = LogManager.getBundleIdentifier;
-            let logger = os_log_create(identifier,productName);
-            os_log(logger, "%{public}s", message);
+        os_log("%@", log: .customCategory, type: .info, message as CVarArg)
         #endif
     }
 
@@ -61,4 +56,9 @@ public class LogManager {
         return prodName;
     }
     
+}
+
+fileprivate extension OSLog {
+    private static var subsystem:String = Bundle.main.bundleIdentifier!
+    static let customCategory:OSLog = OSLog(subsystem: subsystem, category: "Passei-group")
 }
