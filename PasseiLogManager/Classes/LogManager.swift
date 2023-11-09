@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Vagner Oliveira on 05/09/23.
 //
@@ -11,31 +11,27 @@ import OSLog
 @available(iOS 13.4, *)
 public class LogManager {
     
+    private static var filePath:String = Constants.PATH_LOG_DEBUG
+    private static var fileManager:FileManager = .default
 
     public static func dispachLog(_ message:String) {
         
-        #if DEBUG
+        #if targetEnvironment(simulator)
         
-        var fileHandle = FileHandle(forReadingAtPath: Constants.PATH_LOG_DEBUG)
-        
-        if (fileHandle == nil) {
-            let defaultManager = FileManager.default
-            defaultManager.createFile(atPath: Constants.PATH_LOG_DEBUG, contents: nil)
-           
-            fileHandle = FileHandle(forWritingAtPath: Constants.PATH_LOG_DEBUG)
+        if !fileManager.fileExists(atPath: filePath) {
+            if fileManager.createFile(atPath: filePath, contents: nil, attributes: [FileAttributeKey.posixPermissions: 0o644]) {
+                // Arquivo criado com sucesso
+            }
         }
-        
-        // Move o cursor para o final do arquivo
-        let _ = try? fileHandle?.seekToEnd()
-        
-        let formatMessage = "\n\(message)";
-        
-        let data = formatMessage.data(using: .utf8)
-        
-        if let data {
-            try? fileHandle?.write(contentsOf: data)
+
+        if let fileHandle = FileHandle(forWritingAtPath: filePath) {
+            let message = "\n\(message)"
+            if let data = message.data(using: .utf8) {
+                fileHandle.seekToEndOfFile()
+                fileHandle.write(data)
+                fileHandle.closeFile()
+            }
         }
-        try? fileHandle?.close()
             
         #else
         os_log("%@", log: .customCategory, type: .info, message as CVarArg)
