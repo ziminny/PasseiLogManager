@@ -13,7 +13,6 @@ public class LogManager {
     
     private static var filePath:String = Constants.PATH_LOG_DEBUG
     private static var fileManager:FileManager = .default
-
     public static func dispachLog(_ message:String) {
         
         #if targetEnvironment(simulator)
@@ -37,21 +36,6 @@ public class LogManager {
         os_log("%@", log: .customCategory, type: .info, message as CVarArg)
         #endif
     }
-
-     
-
-    static private func getBundleIdentifier() -> String? {
-        let bundleIdentifier = Bundle.main.bundleIdentifier
-        return bundleIdentifier;
-    }
-
-    static private func getProductName() -> String? {
-        let bundle = Bundle.main
-        let info = bundle.infoDictionary;
-        let prodName = info?["CFBundleName"] as? String
-        return prodName;
-    }
-    
 }
 
 fileprivate extension OSLog {
