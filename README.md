@@ -30,6 +30,11 @@ Execute `pod install` no diretório.
 pod 'PasseiLogManager'
 ```
 
+Chamada para registrar um log
+```swift
+LogManager.dispatchLog("Mensagem de log a ser registrada")
+```
+
 ## Autor
 
 95707007, ziminny@gmail.com
