@@ -36,8 +36,7 @@ LogManager.dispatchLog("Mensagem de log a ser registrada")
 ```
 
 ## Autor
-
-95707007, ziminny@gmail.com
+ziminny@gmail.com
 
 ## Licença
 
