@@ -5,25 +5,35 @@
 [![License](https://img.shields.io/cocoapods/l/PasseiLogManager.svg?style=flat)](https://cocoapods.org/pods/PasseiLogManager)
 [![Platform](https://img.shields.io/cocoapods/p/PasseiLogManager.svg?style=flat)](https://cocoapods.org/pods/PasseiLogManager)
 
-## Example
+O `LogManager` é uma classe que oferece funcionalidades para gerenciamento de logs em diferentes ambientes.
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Uso
 
-## Requirements
+### Configuração
 
-## Installation
+Para começar a usar o `LogManager`, siga estes passos:
 
-PasseiLogManager is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+1. **Importe o módulo `LogManager` em seu projeto:**
+
+   ```swift
+   import LogManager
+
+## Examplo
+
+Execute `pod install` no diretório.
+
+## Requerimentos
+
+## Implementação
 
 ```ruby
 pod 'PasseiLogManager'
 ```
 
-## Author
+## Autor
 
 95707007, ziminny@gmail.com
 
-## License
+## Licença
 
-PasseiLogManager is available under the MIT license. See the LICENSE file for more info.
+MIT
