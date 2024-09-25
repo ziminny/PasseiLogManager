@@ -6,17 +6,56 @@
 //
 
 import Foundation
+#if targetEnvironment(simulator)
+
+enum PathError: LocalizedError {
+    case splitError
+    
+    var errorDescription: String? {
+        switch self {
+        case .splitError:
+            return "Não foi possivel pegar o diretório do usuário"
+        }
+    }
+}
 
 /// Contém constantes utilizadas no modulo PasseiLogManager.
-class Constants {
+struct Constants {
     
+#if swift(>=6.0)
     /// Caminho base para arquivos de log.
-    private static var path = "/tmp/"
+    private static func homeDirectoryLogs() throws(PathError) ->  String {
+        return try NSHomeDirectory()
+            .split(separator: "/")
+            .map { String($0) }
+            .getSafeCurentUser()
+    }
     
     /// Caminho completo para o arquivo de log de depuração.
     ///
     /// O caminho é construído usando o diretório temporário (`path`) e o nome do produto (`productName`).
-    static internal var PATH_LOG_DEBUG: String { "\(path)\(productName).txt" }
+    static internal func path() throws(PathError) ->  String {
+        let homeDirectory = try homeDirectoryLogs()
+        return "\(homeDirectory)\(productName).txt"
+    }
+    
+#else
+    /// Caminho base para arquivos de log.
+    private static func homeDirectoryLogs() throws ->  String {
+        return try NSHomeDirectory()
+            .split(separator: "/")
+            .map { String($0) }
+            .getSafeCurentUser()
+    }
+    
+    /// Caminho completo para o arquivo de log de depuração.
+    ///
+    /// O caminho é construído usando o diretório temporário (`path`) e o nome do produto (`productName`).
+    static internal func path() throws ->  String {
+        let homeDirectory = try homeDirectoryLogs()
+        return "\(homeDirectory)\(productName).txt"
+    }
+#endif
     
     /// Obtém o identificador de pacote da aplicação.
     ///
@@ -37,3 +76,26 @@ class Constants {
     }
 }
 
+fileprivate extension Array where Element == String {
+    
+#if swift(>=6.0)
+    func getSafeCurentUser() throws(PathError) -> Element {
+        if count > 0 && self[0].elementsEqual("Users") {
+            return String(describing: "/Users/\(self[1])/Library/Logs/")
+        }
+        
+        throw .splitError
+    }
+#else
+    func getSafeCurentUser() throws -> Element {
+        if count > 0 && self[0].elementsEqual("Users") {
+            return String(describing: "/Users/\(self[1])/Library/Logs/")
+        }
+        
+        throw PathError.splitError
+    }
+#endif
+    
+}
+
+#endif

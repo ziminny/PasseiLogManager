@@ -32,7 +32,7 @@ pod 'PasseiLogManager'
 
 Chamada para registrar um log
 ```swift
-LogManager.dispatchLog("Mensagem de log a ser registrada")
+PLMLogger.logIt("Mensagem de log a ser registrada")
 ```
 
 ## Autor
