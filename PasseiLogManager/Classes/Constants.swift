@@ -6,7 +6,7 @@
 //
 
 import Foundation
-#if targetEnvironment(simulator)
+#if targetEnvironment(simulator) || os(macOS)
 
 enum PathError: LocalizedError {
     case splitError
@@ -53,7 +53,7 @@ struct Constants {
     /// O caminho é construído usando o diretório temporário (`path`) e o nome do produto (`productName`).
     static internal func path() throws ->  String {
         let homeDirectory = try homeDirectoryLogs()
-        return "\(homeDirectory)\(productName).txt"
+        return "\(homeDirectory)\(productName).log"
     }
 #endif
     

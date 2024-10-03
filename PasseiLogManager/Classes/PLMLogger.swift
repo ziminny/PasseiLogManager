@@ -17,7 +17,7 @@ public struct PLMLogger {
     /// - Parameter message: A mensagem a ser registrada.
     public static func logIt(_ message: String, type: OSLogType = .info) {
         
-#if targetEnvironment(simulator)
+#if targetEnvironment(simulator) || os(macOS)
         
         do {
             let filePath = try Constants.path()
@@ -43,10 +43,10 @@ public struct PLMLogger {
             print("Erro ao tentar salvar no path, descriçao: ", error.localizedDescription)
         }
         
-#else
-        // Se não estiver no simulador, usa o sistema de logs do iOS.
-        os_log("%@", log: .customCategory, type: type, message as CVarArg)
 #endif
+        
+        os_log("%@", log: .customCategory, type: type, message as CVarArg)
+
     }
 }
 
